@@ -1,46 +1,17 @@
-resource "google_service_account" "default" {
-  account_id   = "my-custom-sa"
-  display_name = "Custom SA for VM Instance"
-}
-
-resource "google_compute_instance" "default" {
-  name         = "my-instance"
-  machine_type = "n2-standard-2"
-  zone         = "us-central1-a"
-
-  tags = ["foo", "bar"]
+resource "google_compute_instance" "my_instance" {
+  name         = "kubernetes-instance"
+  machine_type = "n1-standard-1"
+  zone         = "asia-south2-b"
+  allow_stopping_for_update = true
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
-      labels = {
-        my_label = "value"
-      }
+      image = "ubuntu-minimal-2210-kinetic-amd64-v20230126"
     }
-  }
-
-  // Local SSD disk
-  scratch_disk {
-    interface = "NVME"
   }
 
   network_interface {
     network = "default"
-
-    access_config {
-      // Ephemeral public IP
-    }
-  }
-
-  metadata = {
-    foo = "bar"
-  }
-
-  metadata_startup_script = "echo hi > /test.txt"
-
-  service_account {
-    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = google_service_account.default.email
-    scopes = ["cloud-platform"]
+    access_config {}
   }
 }
