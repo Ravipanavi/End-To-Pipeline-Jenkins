@@ -1,2 +1,17 @@
-# End-To-Pipeline-Jenkins
-This Repo will use to provision the infra using GCP Cloud and integrate with Terraform - IAC and build using the Jenkins pipeline.
+## End-To-Pipeline-Jenkins ##
+
+Author - Ravi P
+Versio - V1.0
+Date - 1st Sep 2024
+
+Below are the details of this Repo.
+
+Build the GitHub Repo
+Create a new Multibranch pipeline
+Integrate Git With Jenkins - Webhooks
+Provision the GCP Resource - Terraform
+Statefile - Configurations
+
+##############################################################
+
+
